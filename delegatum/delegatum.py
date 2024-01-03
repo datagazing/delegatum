@@ -119,7 +119,8 @@ class Delegatum():
             raise DelegatumError(message)
 
     def get(self, key, default=None):
-        return self[key]
+        '''Support runtime defaults like dict.get(key, default)'''
+        return self[key] if key in self else default
 
 
 def main():
