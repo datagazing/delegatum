@@ -22,7 +22,7 @@ function.
   j = json.loads('{"verbose": true, "output": "file.txt"}')
   y = yaml.safe_load(some_yaml_string)
   some_f = lambda x: x * x
-  delegatuss = Delegatum([cmdline, configfile, j, y, some_f])
+  delegatus = Delegatum([cmdline, configfile, j, y, some_f])
   print(delegatus['verbose'])
   print(delegatus['garbage'])
 
