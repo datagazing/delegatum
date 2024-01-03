@@ -54,6 +54,18 @@ class Delegatum():
         logger.debug("Returning default: {self.default}")
         return self.default
 
+    def __contains__(self, key):
+        for i, scope in enumerate(self._hierarchy):
+            try:
+                scope_type = type(scope).__name__
+                logger.debug(f"Searching for {key} in {scope_type} [{i}]...")
+                result = self._lookup(key=key, scope=scope, priority=i)
+                return True
+            except Exception:
+                logger.debug(f"Miss for {key} in {scope_type} [{i}]")
+        # This is when __getitem__ would return self.default
+        return False
+
     def __setitem__(self, key, value):
         if WARN:
             logger.warning("Setting values not supported")
@@ -100,10 +112,14 @@ class Delegatum():
                 return value
             except Exception as e:
                 logger.debug(f"Callable scope raised exception: {e}")
-                pass
+                raise DelegatumMissError
         else:
+            # This should only happen on misconfiguration
             message = f"Unknown scope type: {scope_type} [{priority}]"
             raise DelegatumError(message)
+
+    def get(self, key, default=None):
+        return self[key]
 
 
 def main():
