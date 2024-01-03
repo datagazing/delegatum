@@ -4,11 +4,9 @@ See top level package docstring for documentation
 
 import argparse
 import logging
-import pathlib
 
 ########################################################################
 
-myself = pathlib.Path(__file__).stem
 logger = logging.getLogger(__name__)
 
 WARN = True
