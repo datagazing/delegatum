@@ -8,6 +8,6 @@ Use collections.ChainMap()
 
 __author__ = """Brendan Strejcek"""
 __email__ = 'brendan@datagazing.com'
-__version__ = '0.3.0'
+__version__ = '1.0.0'
 
 # from .delegatum import Delegatum  # noqa F401
